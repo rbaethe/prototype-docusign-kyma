@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: docusign-event-gw
+  name: docusign-event-gw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docusign-event-gw
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: docusign-event-gw
+    spec:
+      containers:
+      - image: gabbi/docusign-event-gw:0.0.5
+        name: docusign-event-gw
+        resources: {}
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+        envFrom:
+          - secretRef:
+              name: docusign-event-gw
+              optional: false
+        args:
+          - --verbose=false
+          - --basic-auth-enabled=true
+          - --username=$(USERNAME)
+          - --password=$(PASSWORD)
+          - --app-name=docusign
+          - --event-publish-url=http://event-publish-service.kyma-system.svc.cluster.local:8080/v1/events
+          - --base-topic=docusign.com
+status: {}
