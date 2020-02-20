@@ -4,3 +4,5 @@ vendor
 
 /docusign-event-gw/docusign-event-gw
 /docusign-event-gw/test-data/
+.DS_Store
+assets/generated.pem
