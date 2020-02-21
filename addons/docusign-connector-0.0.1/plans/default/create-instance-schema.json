@@ -41,7 +41,7 @@
     },
     "event_gw_ba_password": {
       "type": "string",
-      "title": "Basic Auth User for Event Gateway",
+      "title": "Basic Auth Password for Event Gateway",
       "description": "Provide this in the DocuSign Admin console for basic authentication to connect the event gateway",
       "format": "password"
     }
