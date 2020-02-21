@@ -21,7 +21,7 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+                name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-config
           volumeMounts:
             - name: {{ template "bundle.fullname" . }}-volume
               mountPath: /app/files/
