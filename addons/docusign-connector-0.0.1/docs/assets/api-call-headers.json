@@ -1,0 +1,3 @@
+{
+  "X-DocuSign-Authentication": {{ printf "{\"Username\":\"%s\",\"Password\":\"%s\",\"IntegratorKey\": \"%s\"}" .Values.user_name .Values.password .Values.integrator_key | quote }}
+}

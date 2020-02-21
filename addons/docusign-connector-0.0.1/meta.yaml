@@ -1,0 +1,13 @@
+name: docusign-connector
+version: 0.0.1
+description: "Enables the preview integration of DocuSign APIs and Events. It is not recommended for production scenarios."
+id: 839673f2-ce1e-4529-b818-a8587b4040c5
+displayName: "[Preview] DocuSign - Connector"
+tags: preview,docusign,connector
+labels:
+  preview: "true"
+providerDisplayName: DocuSign
+longDescription: "Enables extending DocuSign in preview mode by registering its REST APIs and Events in an existing Application and enables consuming the APIs from a lambda or microservice with trigger from DocuSign events. It is not recommended for production use."
+documentationURL: https://developers.docusign.com/
+bindable: false
+provisionOnlyOnce: true

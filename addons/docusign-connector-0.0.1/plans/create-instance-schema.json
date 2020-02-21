@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "system_url": {
+      "type": "string",
+      "title": "System URL",
+      "description": "The base URL of the Github developer API. For example, https://api.github.com"
+    },
+    "user_name": {
+      "type": "string",
+      "title": "User Name",
+      "description": "The business User's name on behalf of which API calls will be made"
+    },
+    "password": {
+      "type": "string",
+      "title": "User Password",
+      "description": "The business User's password on behalf of which API calls will be made",
+      "format": "password"
+    },
+    "integrator_key": {
+      "type": "string",
+      "title": "Integrator Key",
+      "description": "The Integrator Key used when making API calls to DocuSign",
+      "format": "password"
+    },
+    "application_name": {
+      "type": "string",
+      "title": "Application Name",
+      "description": "The name of the Application CR where the REST APIS should be registered for consumption"
+    },
+    "cluster_domain": {
+      "type": "string",
+      "title": "Kyma Cluster Domain",
+      "description": "The domain of the Kyma cluster"
+    },
+    "event_gw_ba_user": {
+      "type": "string",
+      "title": "Basic Auth User for Event Gateway",
+      "description": "Provide this in the DocuSign Admin console for basic authentication to connect the event gateway"
+    },
+    "event_gw_ba_password": {
+      "type": "string",
+      "title": "Basic Auth User for Event Gateway",
+      "description": "Provide this in the DocuSign Admin console for basic authentication to connect the event gateway",
+      "format": "password"
+    }
+  },
+  "required": [
+    "system_url",
+    "user_name",
+    "password",
+    "integrator_key",
+    "application_name",
+    "cluster_domain"
+  ]
+}

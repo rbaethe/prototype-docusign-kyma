@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "docusign-connector-0.0.1"
+      description: "DocuSign Connector documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.(md|svg)$)
