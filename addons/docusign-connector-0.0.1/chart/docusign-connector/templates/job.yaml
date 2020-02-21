@@ -28,4 +28,4 @@ spec:
       volumes:
         - name: {{ template "bundle.fullname" . }}-volume
           configMap:
-            name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-api
+            name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-spec
