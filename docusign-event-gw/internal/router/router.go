@@ -19,7 +19,7 @@ func New() http.Handler {
 	ep := handlers.NewEventPublisher()
 
 	eventsHandler := applyBasicAuth(ep.EventHandler())
-	r.HandleFunc("/events", eventsHandler)
+	r.HandleFunc("/", eventsHandler)
 
 	return &Rtr{
 		Handler:        applyLogging(r),

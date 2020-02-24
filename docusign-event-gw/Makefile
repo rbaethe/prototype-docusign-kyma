@@ -1,4 +1,4 @@
-RELEASE?=0.0.5
+RELEASE?=0.0.6
 APP?=docusign-event-gw
 GOOS?=linux
 GOARCH?=amd64
