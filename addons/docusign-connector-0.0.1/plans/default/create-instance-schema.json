@@ -2,10 +2,10 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "system_url": {
+    "base_url": {
       "type": "string",
-      "title": "System URL",
-      "description": "The base URL of the Github developer API. For example, https://api.github.com"
+      "title": "Base URL",
+      "description": "The base URL of the DocuSign environment. For example, https://demo.docusign.net/restapi/v2/accounts/<your-account-id>"
     },
     "user_name": {
       "type": "string",
@@ -29,29 +29,25 @@
       "title": "Application Name",
       "description": "The name of the Application CR where the REST APIS should be registered for consumption"
     },
-    "cluster_domain": {
-      "type": "string",
-      "title": "Kyma Cluster Domain",
-      "description": "The domain of the Kyma cluster"
-    },
     "event_gw_ba_user": {
       "type": "string",
-      "title": "Basic Auth User for Event Gateway",
+      "title": "Event Gateway Basic Auth User",
       "description": "Provide this in the DocuSign Admin console for basic authentication to connect the event gateway"
     },
     "event_gw_ba_password": {
       "type": "string",
-      "title": "Basic Auth Password for Event Gateway",
+      "title": "Event Gateway Basic Auth Password",
       "description": "Provide this in the DocuSign Admin console for basic authentication to connect the event gateway",
       "format": "password"
     }
   },
   "required": [
-    "system_url",
+    "base_url",
     "user_name",
     "password",
     "integrator_key",
     "application_name",
-    "cluster_domain"
+    "event_gw_ba_user",
+    "event_gw_ba_password"
   ]
 }

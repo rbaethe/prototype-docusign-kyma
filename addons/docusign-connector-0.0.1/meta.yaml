@@ -11,3 +11,4 @@ longDescription: "Enables extending DocuSign in preview mode by registering its 
 documentationURL: https://developers.docusign.com/
 bindable: false
 provisionOnlyOnce: true
+imageUrl: https://raw.githubusercontent.com/abbi-gaurav/prototype-docusign-kyma/master/assets/docusign-icon.png

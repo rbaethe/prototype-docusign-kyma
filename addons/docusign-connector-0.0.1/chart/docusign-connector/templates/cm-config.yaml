@@ -6,7 +6,7 @@ metadata:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
 data:
-  SYSTEM_URL	: {{ .Values.system_url | quote }}
+  SYSTEM_URL	: {{ .Values.base_url | quote }}
   APPLICATION_NAME: {{ .Values.application_name | quote }}
   PROVIDER_NAME: DocuSign
   PRODUCT_NAME: DocuSign
