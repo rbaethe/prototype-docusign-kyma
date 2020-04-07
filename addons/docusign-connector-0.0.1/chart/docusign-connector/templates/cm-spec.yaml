@@ -39,12 +39,49 @@ data:
                       "title": "StatusTime",
                       "description": "StatusTime",
                       "type": "string"
+                    },
+                    "DocumentStatuses": {
+                      "title": "DocumentStatuses",
+                      "description": "DocumentStatuses",
+                      "type": "object",
+                      "DocumentStatus": {
+                        "type": "object",
+                        "title": "DocumentStatus",
+                        "description": "DocumentStatus",
+                        "ID": "ID",
+                        "Name": "Document Name",
+                        "TemplateName": "Template Name"
+                      }
+                    },
+                    "RecipientStatuses": {
+                      "title": "RecipientStatuses",
+                      "description": "RecipientStatuses",
+                      "type": "object",
+                      "RecipientStatus": {
+                        "title": "RecipientStatus",
+                        "description": "RecipientStatus",
+                        "Email": "email of recipkientå",
+                        "Type": "Signer"
+                      }
                     }
                   },
                   "example": {
-                    "EnvelopeId": "94f7a99a-9884-4001-b276-263f95fd0dc5",
+                    "DocumentStatuses": {
+                      "DocumentStatus": {
+                        "ID": "1",
+                        "Name": "Partner Agreement Final Copy",
+                        "TemplateName": "Partner Agreement"
+                      }
+                    },
+                    "EnvelopeID": "f3bbd570-4d42-4ca5-94d6-4644c2c201a5",
+                    "RecipientStatuses": {
+                      "RecipientStatus": {
+                        "Email": "john.doe@example.com",
+                        "Type": "Signer"
+                      }
+                    },
                     "Status": "Completed",
-                    "StatusTime": "2019-08-27T07:23:01.906948"
+                    "StatusTime": "2020-04-06T05:14:40.5758443"
                   }
                 }
               }
@@ -69,12 +106,49 @@ data:
                       "title": "StatusTime",
                       "description": "StatusTime",
                       "type": "string"
+                    },
+                    "DocumentStatuses": {
+                      "title": "DocumentStatuses",
+                      "description": "DocumentStatuses",
+                      "type": "object",
+                      "DocumentStatus": {
+                        "type": "object",
+                        "title": "DocumentStatus",
+                        "description": "DocumentStatus",
+                        "ID": "ID",
+                        "Name": "Document Name",
+                        "TemplateName": "Template Name"
+                      }
+                    },
+                    "RecipientStatuses": {
+                      "title": "RecipientStatuses",
+                      "description": "RecipientStatuses",
+                      "type": "object",
+                      "RecipientStatus": {
+                        "title": "RecipientStatus",
+                        "description": "RecipientStatus",
+                        "Email": "email of recipkientå",
+                        "Type": "Signer"
+                      }
                     }
                   },
                   "example": {
-                    "EnvelopeId": "94f7a99a-9884-4001-b276-263f95fd0dc5",
+                    "DocumentStatuses": {
+                      "DocumentStatus": {
+                        "ID": "1",
+                        "Name": "Partner Agreement Final Copy",
+                        "TemplateName": "Partner Agreement"
+                      }
+                    },
+                    "EnvelopeID": "f3bbd570-4d42-4ca5-94d6-4644c2c201a5",
+                    "RecipientStatuses": {
+                      "RecipientStatus": {
+                        "Email": "john.doe@example.com",
+                        "Type": "Signer"
+                      }
+                    },
                     "Status": "Sent",
-                    "StatusTime": "2019-08-27T07:23:01.906948"
+                    "StatusTime": "2020-04-06T05:14:40.5758443"
                   }
                 }
               }
@@ -99,12 +173,49 @@ data:
                       "title": "StatusTime",
                       "description": "StatusTime",
                       "type": "string"
+                    },
+                    "DocumentStatuses": {
+                      "title": "DocumentStatuses",
+                      "description": "DocumentStatuses",
+                      "type": "object",
+                      "DocumentStatus": {
+                        "type": "object",
+                        "title": "DocumentStatus",
+                        "description": "DocumentStatus",
+                        "ID": "ID",
+                        "Name": "Document Name",
+                        "TemplateName": "Template Name"
+                      }
+                    },
+                    "RecipientStatuses": {
+                      "title": "RecipientStatuses",
+                      "description": "RecipientStatuses",
+                      "type": "object",
+                      "RecipientStatus": {
+                        "title": "RecipientStatus",
+                        "description": "RecipientStatus",
+                        "Email": "email of recipkientå",
+                        "Type": "Signer"
+                      }
                     }
                   },
                   "example": {
-                    "EnvelopeId": "94f7a99a-9884-4001-b276-263f95fd0dc5",
+                    "DocumentStatuses": {
+                      "DocumentStatus": {
+                        "ID": "1",
+                        "Name": "Partner Agreement Final Copy",
+                        "TemplateName": "Partner Agreement"
+                      }
+                    },
+                    "EnvelopeID": "f3bbd570-4d42-4ca5-94d6-4644c2c201a5",
+                    "RecipientStatuses": {
+                      "RecipientStatus": {
+                        "Email": "john.doe@example.com",
+                        "Type": "Signer"
+                      }
+                    },
                     "Status": "Delivered",
-                    "StatusTime": "2019-08-27T07:23:01.906948"
+                    "StatusTime": "2020-04-06T05:14:40.5758443"
                   }
                 }
               }

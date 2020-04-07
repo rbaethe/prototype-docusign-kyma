@@ -42,7 +42,7 @@ spec:
         app: {{ template "bundle.fullname" . }}-event-gw
     spec:
       containers:
-        - image: gabbi/docusign-event-gw:0.0.5
+        - image: rbdock1407/kyma-docusign:0.0.2
           imagePullPolicy: "Always"
           args:
             - --verbose=false
