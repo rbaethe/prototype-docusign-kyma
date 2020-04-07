@@ -32,6 +32,8 @@ func (ep *EventPublisher) EventHandler() http.HandlerFunc {
 			return
 		}
 
+		logger.Logger.Infow("kyma event request body", "event", "bla")
+
 		resp, err := ep.eventForwarder.Forward(kymaEvent)
 		if err != nil {
 			errors.HandleError(w, err, errors.InternalError)

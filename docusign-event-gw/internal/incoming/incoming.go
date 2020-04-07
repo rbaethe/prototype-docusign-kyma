@@ -18,8 +18,8 @@ func Process(requestBody []byte) (*events.KymaEvent, error) {
 	return kymaEvent, nil
 }
 
-func to(requestBody []byte) (*events.Envelope, error) {
-	env := events.Envelope{}
+func to(requestBody []byte) (*events.DocuSignEnvelopeInformation, error) {
+	env := events.DocuSignEnvelopeInformation{}
 	err := xml.Unmarshal(requestBody, &env)
 	if err != nil {
 		return nil, err

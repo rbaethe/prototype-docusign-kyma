@@ -1,8 +1,8 @@
-RELEASE?=0.0.6
-APP?=docusign-event-gw
+RELEASE?=0.0.2
+APP?=kyma-docusign
 GOOS?=linux
 GOARCH?=amd64
-CONTAINER_IMAGE?=gabbi/${APP}
+CONTAINER_IMAGE?=rbdock1407/${APP}
 
 clean:
 	rm -rf ${APP}
