@@ -1,4 +1,4 @@
-RELEASE?=0.0.2
+RELEASE?=0.0.3
 APP?=kyma-docusign
 GOOS?=linux
 GOARCH?=amd64
@@ -18,7 +18,7 @@ build: clean vet test
 		-ldflags "-s -w" \
 		-o ${APP}
 
-build-image: build
+build-image:
 	docker build -t $(CONTAINER_IMAGE):$(RELEASE) .
 
 push-image:

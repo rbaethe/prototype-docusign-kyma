@@ -44,6 +44,8 @@ func (e *EventForwarder) Forward(event *events.KymaEvent) (map[string]interface{
 		return nil, err
 	}
 
+	req = e.enrichRequest(event, req)
+	
 	resp, err := e.client.Do(req)
 	if err != nil {
 		return nil, err
@@ -65,4 +67,14 @@ func (e *EventForwarder) Forward(event *events.KymaEvent) (map[string]interface{
 
 	return respMap, nil
 
+}
+
+func (e *EventForwarder) enrichRequest(event *events.KymaEvent, request *http.Request) *http.Request {
+	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("ce-specversion", "1.0")
+	request.Header.Set("ce-type", event.EventType)
+	request.Header.Set("ce-eventtypeversion", event.EventTypeVersion)
+	request.Header.Set("ce-id", event.EventID)
+	request.Header.Set("ce-source", *event.SourceID)
+	return request
 }
