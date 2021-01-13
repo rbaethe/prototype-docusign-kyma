@@ -81,14 +81,14 @@ func (e *EventForwarder) Forward(event *events.CloudEvent) (map[string]interface
 func (e *EventForwarder) enrichRequest(event *events.CloudEvent, request *http.Request) *http.Request {
 
 	eventId, _ := generateEventID()
-	//sourceID := (config.GlobalConfig.AppName).String()
+	sourceID := *config.GlobalConfig.AppName
 
 	request.Header.Set("Content-Type", "application/cloudevents+json; charset=utf-8")
 	request.Header.Set("ce-specversion", "1.0")
 	request.Header.Set("ce-type", event.EventType)
 	request.Header.Set("ce-eventtypeversion", "v1")
 	request.Header.Set("ce-id", eventId)
-	request.Header.Set("ce-source", "docusign")
+	request.Header.Set("ce-source", sourceID)
 	return request
 }
 
