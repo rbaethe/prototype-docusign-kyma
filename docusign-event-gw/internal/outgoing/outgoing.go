@@ -11,6 +11,8 @@ import (
 	"time"
 )
 
+import "github.com/gofrs/uuid"
+
 type EventForwarder struct {
 	eventPublishURL *string
 	client          *http.Client
@@ -33,7 +35,7 @@ func NewEventForwarder() *EventForwarder {
 	}
 }
 
-func (e *EventForwarder) Forward(event *events.KymaEvent) (map[string]interface{}, error) {
+func (e *EventForwarder) Forward(event *events.CloudEvent) (map[string]interface{}, error) {
 	eventBytes, err := json.Marshal(event)
 	if err != nil {
 		return nil, err
@@ -45,7 +47,14 @@ func (e *EventForwarder) Forward(event *events.KymaEvent) (map[string]interface{
 	}
 
 	req = e.enrichRequest(event, req)
-	
+
+	for name, values := range req.Header {
+		// Loop over all values for the name.
+		for _, value := range values {
+			logger.Logger.Infow("event request header: ", string(name), string(value))
+		}
+	}
+
 	resp, err := e.client.Do(req)
 	if err != nil {
 		return nil, err
@@ -69,12 +78,24 @@ func (e *EventForwarder) Forward(event *events.KymaEvent) (map[string]interface{
 
 }
 
-func (e *EventForwarder) enrichRequest(event *events.KymaEvent, request *http.Request) *http.Request {
-	request.Header.Set("Content-Type", "application/json")
+func (e *EventForwarder) enrichRequest(event *events.CloudEvent, request *http.Request) *http.Request {
+
+	eventId, _ := generateEventID()
+	//sourceID := (config.GlobalConfig.AppName).String()
+
+	request.Header.Set("Content-Type", "application/cloudevents+json; charset=utf-8")
 	request.Header.Set("ce-specversion", "1.0")
 	request.Header.Set("ce-type", event.EventType)
-	request.Header.Set("ce-eventtypeversion", event.EventTypeVersion)
-	request.Header.Set("ce-id", event.EventID)
-	request.Header.Set("ce-source", *event.SourceID)
+	request.Header.Set("ce-eventtypeversion", "v1")
+	request.Header.Set("ce-id", eventId)
+	request.Header.Set("ce-source", "docusign")
 	return request
+}
+
+func generateEventID() (string, error) {
+	uid, err := uuid.NewV4()
+	if err != nil {
+		return "", err
+	}
+	return uid.String(), nil
 }

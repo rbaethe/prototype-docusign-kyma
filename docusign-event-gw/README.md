@@ -16,7 +16,7 @@
   ```shell script
   docker run -p 8080:8080 gabbi/docusign-event-gw:0.0.4 --basic-auth-enabled=false --app-name=docusign --event-publish-url=http://localhost:8011/post
     
-  docker run -p 8080:8080 rbdock1407/kyma-docusign:0.0.2 --basic-auth-enabled=false --app-name=docusign --event-publish-url=http://host.docker.internal:8011/post
+  docker run -p 8080:8080 rbdock1407/kyma-docusign:0.0.3 --basic-auth-enabled=false --app-name=docusign --event-publish-url=http://host.docker.internal:8011/post
    
   ```
 

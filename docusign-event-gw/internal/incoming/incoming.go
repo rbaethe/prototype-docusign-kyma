@@ -6,7 +6,7 @@ import (
 	"github.com/abbi-gaurav/prototype-docusign-kyma/docusign-event-gw/internal/model/events"
 )
 
-func Process(requestBody []byte) (*events.KymaEvent, error) {
+func Process(requestBody []byte) (*events.CloudEvent, error) {
 	envelope, err := to(requestBody)
 	if err != nil {
 		return nil, err

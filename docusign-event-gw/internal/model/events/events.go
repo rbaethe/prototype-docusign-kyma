@@ -3,7 +3,6 @@ package events
 import (
 	"github.com/abbi-gaurav/prototype-docusign-kyma/docusign-event-gw/internal/config"
 	"strings"
-	"time"
 )
 import "github.com/gofrs/uuid"
 
@@ -23,12 +22,9 @@ type Recipient struct {
 	recipienttype     string `xml:"Type", json:"type"`
 }
 
-type KymaEvent struct {
-	SourceID         *string     `json:"source-id"`
+type CloudEvent struct {
 	EventType        string      `json:"event-type"`
-	EventTypeVersion string      `json:"event-type-version"`
-	EventID          string      `json:"event-id"`
-	EventTime        string      `json:"event-time"`
+	EventSpecVersion string      `json:"specversion"`
 	Data             interface{} `json:"data"`
 }
 
@@ -55,16 +51,13 @@ type DocuSignEnvelopeInformation struct {
 
 
 
-func Map(envelope *DocuSignEnvelopeInformation) *KymaEvent {
-	eventId, _ := generateEventID()
+func Map(envelope *DocuSignEnvelopeInformation) *CloudEvent {
+	//eventId, _ := generateEventID()
 	eventType := *config.GlobalConfig.BaseTopic + "." + "envelope" + "." + strings.ToLower(envelope.EnvelopeStatus.Status)
 
-	return &KymaEvent{
-		SourceID:         config.GlobalConfig.AppName,
+	return &CloudEvent{
 		EventType:        eventType,
-		EventTypeVersion: "v1",
-		EventID:          eventId,
-		EventTime:        time.Now().Format(time.RFC3339),
+		EventSpecVersion: "1.0",
 		Data:             envelope.EnvelopeStatus,
 	}
 }
