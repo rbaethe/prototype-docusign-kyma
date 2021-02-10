@@ -7,6 +7,7 @@ import (
 	"github.com/abbi-gaurav/prototype-docusign-kyma/docusign-event-gw/internal/config"
 	"github.com/abbi-gaurav/prototype-docusign-kyma/docusign-event-gw/internal/logger"
 	"github.com/abbi-gaurav/prototype-docusign-kyma/docusign-event-gw/internal/model/events"
+	"log"
 	"net/http"
 	"time"
 )
@@ -35,16 +36,22 @@ func NewEventForwarder() *EventForwarder {
 	}
 }
 
-func (e *EventForwarder) Forward(event *events.CloudEvent) (map[string]interface{}, error) {
-	eventBytes, err := json.Marshal(event)
+func (e *EventForwarder) Forward(event *events.CloudEvent) (int, error) {
+	eventBytes, err := json.Marshal(event.Data)
 	if err != nil {
-		return nil, err
+		return 0, err
 	}
 
 	req, err := http.NewRequest(http.MethodPost, *e.eventPublishURL, bytes.NewReader(eventBytes))
 	if err != nil {
-		return nil, err
+		return 0, err
 	}
+
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 
 	req = e.enrichRequest(event, req)
 
@@ -57,24 +64,27 @@ func (e *EventForwarder) Forward(event *events.CloudEvent) (map[string]interface
 
 	resp, err := e.client.Do(req)
 	if err != nil {
-		return nil, err
+		logger.Logger.Infow("error received: ", err)
+		return 0, err
 	}
+
+	logger.Logger.Infow("Received response without error");
+
 	defer resp.Body.Close()
 
-	dec := json.NewDecoder(resp.Body)
-	var respMap map[string]interface{}
-	err = dec.Decode(&respMap)
-	if err != nil {
-		return nil, err
-	}
+	infoMsg := fmt.Sprintf("Received response from event gateway with http status %d (%s) ", resp.StatusCode, resp.Status)
+	logger.Logger.Infow(infoMsg)
+
+	logger.Logger.Infow("Start decoding response");
+
 
 	if resp.StatusCode != http.StatusOK {
 		errMsg := fmt.Sprintf("unexpected response when publishing event %d (%s)", resp.StatusCode, resp.Status)
 		logger.Logger.Error(errMsg)
-		return respMap, fmt.Errorf(errMsg)
+		return resp.StatusCode, fmt.Errorf(errMsg)
 	}
 
-	return respMap, nil
+	return resp.StatusCode, nil
 
 }
 
@@ -83,7 +93,7 @@ func (e *EventForwarder) enrichRequest(event *events.CloudEvent, request *http.R
 	eventId, _ := generateEventID()
 	sourceID := *config.GlobalConfig.AppName
 
-	request.Header.Set("Content-Type", "application/cloudevents+json; charset=utf-8")
+	request.Header.Set("Content-Type", "application/json; charset=utf-8")
 	request.Header.Set("ce-specversion", "1.0")
 	request.Header.Set("ce-type", event.EventType)
 	request.Header.Set("ce-eventtypeversion", "v1")

@@ -1,4 +1,4 @@
-RELEASE?=0.0.6
+RELEASE?=0.0.9
 APP?=kyma-docusign
 GOOS?=linux
 GOARCH?=amd64

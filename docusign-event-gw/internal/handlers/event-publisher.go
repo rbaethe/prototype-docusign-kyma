@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"github.com/abbi-gaurav/prototype-docusign-kyma/docusign-event-gw/internal/incoming"
 	"github.com/abbi-gaurav/prototype-docusign-kyma/docusign-event-gw/internal/logger"
 	"github.com/abbi-gaurav/prototype-docusign-kyma/docusign-event-gw/internal/model/errors"
@@ -24,7 +25,6 @@ func (ep *EventPublisher) EventHandler() http.HandlerFunc {
 		if err != nil {
 			logger.Logger.Errorw("error when parsing request", "error", err)
 		}
-		logger.Logger.Infow("event request body", "event", string(body))
 
 		kymaEvent, err := incoming.Process(body)
 		if err != nil {
@@ -32,15 +32,16 @@ func (ep *EventPublisher) EventHandler() http.HandlerFunc {
 			return
 		}
 
-		logger.Logger.Infow("kyma event request body", "event",  (kymaEvent))
+		logger.Logger.Infow("kyma event request body", "event",  (kymaEvent.Data))
 
-		resp, err := ep.eventForwarder.Forward(kymaEvent)
+		respCode, err := ep.eventForwarder.Forward(kymaEvent)
 		if err != nil {
 			errors.HandleError(w, err, errors.InternalError)
 			return
 		}
 
-		logger.Logger.Infow("Received response for event publishing", "response", resp)
+		infoMsg := fmt.Sprintf("Received response for event publishing: %d ", respCode)
+		logger.Logger.Infow(infoMsg)
 
 		w.WriteHeader(http.StatusOK)
 	})

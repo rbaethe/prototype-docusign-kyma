@@ -45,5 +45,9 @@ func ParseFlags() {
 		logger.Logger.Panicw("Invalid configuration - Missing APP Name", "config", GlobalConfig)
 	}
 
-	logger.Logger.Infow("App config", "config", GlobalConfig)
+	logger.Logger.Infow("App config", "LogRequests", logRequest)
+	logger.Logger.Infow("App config", "BasicAuthEnabled", baEnabled)
+	logger.Logger.Infow("App config", "AppName", appName)
+	logger.Logger.Infow("App config", "EventPublishURL", eventPublishURL)
+	logger.Logger.Infow("App config", "BaseTopic", baseTopic)
 }
