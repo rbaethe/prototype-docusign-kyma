@@ -78,11 +78,11 @@ func (e *EventForwarder) Forward(event *events.CloudEvent) (int, error) {
 	logger.Logger.Infow("Start decoding response");
 
 
-	if resp.StatusCode != http.StatusOK {
-		errMsg := fmt.Sprintf("unexpected response when publishing event %d (%s)", resp.StatusCode, resp.Status)
-		logger.Logger.Error(errMsg)
-		return resp.StatusCode, fmt.Errorf(errMsg)
-	}
+    if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusNoContent {
+        errMsg := fmt.Sprintf("unexpected response when publishing event %d (%s)", resp.StatusCode, resp.Status)
+        logger.Logger.Error(errMsg)
+        return resp.StatusCode, fmt.Errorf(errMsg)
+    }
 
 	return resp.StatusCode, nil
 
